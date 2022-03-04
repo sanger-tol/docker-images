@@ -1,0 +1,19 @@
+# Will be passed as argument TAG to the docker build,
+# and will be the basis for your docker image tag
+app_version="0.001"
+
+# Will be added as a suffix to your docker image tag
+# to allow container versioning, i.e. if you change the
+# Dockerfile without changing the application version
+container_version="1"
+
+# Any extra arguments will be passed to the
+# docker build (e.g. '--build-arg "FOO=BAR"').  If
+# working on a shared machine do not pass tokens,
+# passwords etc. like this!
+extra_build_args=""
+
+# docker image registry name
+# gitlab for sanger internal gitlab for private docker image
+# quay for quay.io for public docker image
+docker_registry="gitlab"
