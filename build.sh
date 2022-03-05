@@ -10,16 +10,16 @@ Usage: $0 <application> [--app_version <application version>]  [--container <con
                           will be used as image name.
        appliction version will be passed as argument TAG to the docker build,
                           and will be the basis for your docker image tag.
-                          Optional, the value from  file 'docker_build_parms' will be used if given.
+                          Optional, the value from file 'docker_build_parameters' will be used.
        container version  will be added as a suffix to your docker image tag
                           to allow container versioning, i.e. if you change the
                           Dockerfile without changing the application version.
-                          Optional, the value from file 'docker_build_parms' will be used if given.
-       registry name      Docker registry name.
-                          Optional, the value from file 'docker_build_parms' will be used if given.
+                          Optional, the value from file 'docker_build_parameters' will be used.
+       registry name      Docker registry name, gitlab or quay.
+                          Optional, the value from file 'docker_build_parameters' will be used.
        extra build args   Optional, any extra arguments will be passed to the
-                          docker build (e.g. '--build-arg "FOO=BAR"').  If
-                          working on a shared machine do not pass tokens,
+                          docker build (e.g. '--build-arg "FOO=BAR"').
+                          If working on a shared machine do not pass tokens,
                           passwords etc. like this!
 EOT
 }
@@ -53,7 +53,9 @@ if [[ ! -d "$working_dir/$application" ]]; then
 fi
 
 cd $working_dir/$application
-source "docker_build_parms"
+if [[ -f "docker_build_parameters" ]]; then
+  source "docker_build_parameters"
+fi
 
 # remaining arguments are either --container followed by a container version
 # OR --app_version followed by an application
