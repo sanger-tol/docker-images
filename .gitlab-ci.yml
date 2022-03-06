@@ -10,8 +10,8 @@ test_image:
   tags:
     - openstack-autoscale-theta-docker-in-docker
   variables:
-    - DOCKER_USER: ${CI_REGISTRY_USER}
-    - DOCKER_TOKEN: ${CI_REGISTRY_PASSWORD}
+    DOCKER_USER: ${CI_REGISTRY_USER}
+    DOCKER_TOKEN: ${CI_REGISTRY_PASSWORD}
   script:
     - ./test.sh $APPLICATION_NAME
   rules:
