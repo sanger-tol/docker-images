@@ -17,6 +17,8 @@ variables:
   #
   # This instructs Docker not to start over TLS.
   DOCKER_TLS_CERTDIR: ""
+  # enaable buildkit for chomod
+  DOCKER_BUILDKIT: 1
 
 services:
   - docker:20.10.12-dind
@@ -31,6 +33,7 @@ test_image:
   variables:
     DOCKER_USER: ${CI_REGISTRY_USER}
     DOCKER_TOKEN: ${CI_REGISTRY_PASSWORD}
+    APPLICATION_NAME: arima
   script:
     - /bin/sh test.sh $APPLICATION_NAME
   rules:
