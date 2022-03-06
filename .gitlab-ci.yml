@@ -32,6 +32,6 @@ test_image:
     DOCKER_USER: ${CI_REGISTRY_USER}
     DOCKER_TOKEN: ${CI_REGISTRY_PASSWORD}
   script:
-    - ./test.sh $APPLICATION_NAME
+    - /bin/sh test.sh $APPLICATION_NAME
   rules:
     - if: '$APPLICATION_NAME != ""'
