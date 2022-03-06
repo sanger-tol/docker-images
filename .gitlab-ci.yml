@@ -10,6 +10,7 @@ test_image:
   tags:
     - openstack-autoscale-theta-docker-in-docker
   script:
+    - echo $APPLICATION_NAME
     - ./test.sh $APPLICATION_NAME
   rules:
     - if: '$APPLICATION_NAME != ""'
