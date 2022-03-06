@@ -9,7 +9,11 @@ test_image:
   stage: test
   tags:
     - openstack-autoscale-theta-docker-in-docker
+  variables:
+    - DOCKER_USER: ${CI_REGISTRY_USER}
+    - DOCKER_TOKEN: ${CI_REGISTRY_PASSWORD}
   script:
+    - eco $APPLICATION_NAME
     - ./test.sh $APPLICATION_NAME
   rules:
     - if: '$APPLICATION_NAME != ""'
