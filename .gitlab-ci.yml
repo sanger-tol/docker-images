@@ -1,0 +1,15 @@
+default:
+  image:
+    name: ubuntu:18.04
+
+stages:
+  - test
+
+test_image:
+  stage: test
+  tags:
+    - openstack-autoscale-theta-docker-in-docker
+  script:
+    - ./test.sh $APPLICATION_NAME
+  rules:
+    - if: '$APPLICATION_NAME != ""'
