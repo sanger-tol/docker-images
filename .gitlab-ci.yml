@@ -1,4 +1,4 @@
-image: docker:19.03.12
+image: docker:20.10.12
 
 variables:
   # When using dind service, you must instruct docker to talk with the
@@ -19,7 +19,7 @@ variables:
   DOCKER_TLS_CERTDIR: ""
 
 services:
-  - docker:19.03.12-dind
+  - docker:20.10.12-dind
 
 stages:
   - test
