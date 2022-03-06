@@ -19,6 +19,8 @@ variables:
   DOCKER_TLS_CERTDIR: ""
   # enaable buildkit for chomod
   DOCKER_BUILDKIT: 1
+  DOCKER_USER: ${CI_REGISTRY_USER}
+  DOCKER_TOKEN: ${CI_REGISTRY_PASSWORD}
 
 services:
   - docker:20.10.12-dind
@@ -31,9 +33,8 @@ test_image:
   tags:
     - openstack-autoscale-theta-docker-in-docker
   variables:
-    DOCKER_USER: ${CI_REGISTRY_USER}
-    DOCKER_TOKEN: ${CI_REGISTRY_PASSWORD}
-    APPLICATION_NAME: arima
+    DOCKER_USER: ${GITLAB_DOCKER_USER}
+    DOCKER_TOKEN: ${GITLAB_DOCKER_TOKEN}
   script:
     - /bin/sh test.sh $APPLICATION_NAME
   rules:
