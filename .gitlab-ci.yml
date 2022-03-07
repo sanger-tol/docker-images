@@ -19,6 +19,8 @@ variables:
   DOCKER_TLS_CERTDIR: ""
   # enaable buildkit for chomod
   DOCKER_BUILDKIT: 1
+
+  # GITLAB docker current registry user name and password
   DOCKER_USER: ${CI_REGISTRY_USER}
   DOCKER_TOKEN: ${CI_REGISTRY_PASSWORD}
 
@@ -38,4 +40,4 @@ test_image:
   script:
     - /bin/sh test.sh $APPLICATION_NAME
   rules:
-    - if: '$APPLICATION_NAME != ""'
+    - if: '$APPLICATION_NAME != "empty" && BUILD_OR_TEST == "test"'
