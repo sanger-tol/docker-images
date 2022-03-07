@@ -48,6 +48,7 @@ build_image:
   tags:
     - openstack-autoscale-theta-docker-in-docker
   script:
+    - apk add --no-cache git
     - /bin/sh build.sh $APPLICATION_NAME
   rules:
     - if: '$APPLICATION_NAME != "empty" && $BUILD_OR_TEST == "build" && $CI_COMMIT_BRANCH == "main"'
