@@ -14,16 +14,25 @@ Each application has a dedicated directory contaning a Dockerfile and anything e
 
 To avoid you pass the docker build parameters from command line, you can create a file called ```docker_build_parameters```
 
-When building the image, the argument TAG will be defined with the application version number required.  So the ```Dockerfile``` should contain ARG TAG and can rely on the value of $TAG to be populated with the version number.
+When building the image, the argument TAG will be defined with the application version number required. 
+So the ```Dockerfile``` should contain ARG TAG and can rely on the value of $TAG to be populated with the version number.
 
-The Dockerfile is versioned separartely from the application version number, in case the container needs to be changed independently from the application version; recommend you start at 1 and increment each time the Dockerfile is changed _without_ a change of application version.
+The Dockerfile is versioned separartely from the application version number,
+in case the container needs to be changed independently from the application version; 
+recommend you start at 1 and increment each time the Dockerfile is changed _without_ a change of application version.
 
-Docker tags are based on the application version, with the container version as a suffix; e.g. the first version of a container for an an application v3.2 would be tagged `3.2-c1`.
+Docker tags are based on the application version, with the container version as a suffix; 
+e.g. the first version of a container for an an application v3.2 would be tagged `3.2-c1`.
 
 ## Prerequisite
 The following environment variables need to be set to use the scripts below:
 * DOCKER_USER this would be the GitLab or Quay login, ie your login
 * DOCKER_TOKEN this would be access token with the right permission
+
+If you build the image as production, the git repository needs to be tagged.
+Therefore, the following two variables needs to be set as well:
+* GITLAB_USER this would be the GITLab git repo username
+* GITLAB_TOKN this would be access token with the write-permission.
 
 ## Docker image building for tests
 The script ```test.sh``` will
@@ -79,3 +88,18 @@ Examples:
 ```
 These would all add `--no-cache --build-arg "BUILD_PARAM=whatever"` to the docker build command.  This is
 useful if you have an arbitrary `ARG` in your Dockerfile that you want to be able to set at build time.
+
+## Run test and build using GitLab CI
+### Prerequisite
+The following GitLab CI/CD varialbes needs to set:
+* APPLICATION_NAME efault 'empty', change to the application folder name in GitLab UI
+
+* BUILD_OR_TEST default 'test', change to 'build' in GitLab UI if needed
+
+* DOCKER_REGISTRY default 'gitlab', change to 'quay' in GitLab UI if needed
+
+* GITLAB_DOCKER_USER use them to push test images to Sanger GitLab and git tagging when building
+* GITLAB_DOCKER_TOKEN use them to push test images to Sanger GitLab and git tagging when building
+
+* QUAY_DOCKER_USER use them to push images to quay.io
+* QUAY_DOCKER_TOKEN use them to push images to quay.io

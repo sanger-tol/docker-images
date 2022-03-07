@@ -105,13 +105,13 @@ then
   exit 1
 fi
 
-if [ -z ${GITLAB_USER+x} ]
+if [ -z ${GITLAB_USER+x}  ]&& [ ${building_not_testing} ]
 then
   echo Please set your gitlab login into variable GITLAB_USER
   exit 1
 fi
 
-if [ -z ${GITLAB_TOKEN+x} ]
+if [ -z ${GITLAB_TOKEN+x} ] && [ ${building_not_testing} ]
 then
   echo Please set your personal token into variable GITLAB_TOKEN
   exit 1
