@@ -40,4 +40,4 @@ test_image:
   script:
     - /bin/sh test.sh $APPLICATION_NAME
   rules:
-    - if: '$APPLICATION_NAME != "empty" && BUILD_OR_TEST == "test"'
+    - if: '$APPLICATION_NAME != "empty" && $BUILD_OR_TEST == "test"'
