@@ -96,7 +96,7 @@ useful if you have an arbitrary `ARG` in your Dockerfile that you want to be abl
 The following GitLab CI/CD varialbes needs to set:
 * APPLICATION_NAME efault 'empty', change to the application folder name in GitLab UI
 
-* BUILD_OR_TEST default 'test', change to 'build' in GitLab UI if needed
+* BUILD_OR_TEST default 'test', change to 'build' in GitLab UI if needed, must match the value in file ```docker_build_parameters```
 
 * DOCKER_REGISTRY default 'gitlab', change to 'quay' in GitLab UI if needed
 
@@ -105,3 +105,20 @@ The following GitLab CI/CD varialbes needs to set:
 
 * QUAY_DOCKER_USER use them to push images to quay.io
 * QUAY_DOCKER_TOKEN use them to push images to quay.io
+
+### GitLab Run Pipeline user interace
+Use the following user interface to build docker imeage by setting some variables using the form.  
+https://gitlab.internal.sanger.ac.uk/tol-it/software/docker-images/-/pipelines/new
+
+* Docker image building for tests
+  * select the right branch
+  * APPLICATION_NAME = your_application_name
+* Private Docker image building for production
+  * APPLICATION_NAME = your_application_name
+  * BUILD_OR_TEST = build
+* Public Docker image building for production
+    * APPLICATION_NAME = your_application_name
+    * BUILD_OR_TEST = build
+    * DOCKER_REGISTRY = quay
+  
+    ![Screenshot](quay_building_image_ui.png)
