@@ -2,12 +2,13 @@
 
 Registry of docker containers and dockerfiles for any software that isn't available as a container publicly.
 
-Any docker images you don't want to publish publicly:
-https://gitlab-registry.internal.sanger.ac.uk/tol-it/software/docker-images  
+Any docker images you don't want to publish publicly: 
+https://gitlab.internal.sanger.ac.uk/tol-it/software/docker-images/container_registry  
 Otherwise:
 https://quay.io/organization/tol
 
-For test docker images: https://gitlab-registry.internal.sanger.ac.uk/tol-it/software/docker-images-test
+For test docker images: 
+https://gitlab.internal.sanger.ac.uk/tol-it/software/docker-images-test/container_registry
 
 ## Structure
 Each application has a dedicated directory contaning a Dockerfile and anything else required to build the image.
