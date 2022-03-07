@@ -45,6 +45,9 @@ test_image:
 
 build_image:
   stage: build
+  variables:
+    GITLAB_USER: ${GITLAB_DOCKER_USER}
+    GITLAB_TOKEN: ${GITLAB_DOCKER_TOKEN}
   tags:
     - openstack-autoscale-theta-docker-in-docker
   script:

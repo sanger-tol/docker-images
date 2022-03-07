@@ -23,6 +23,7 @@ Usage: $0 <application> [--app_version <application version>]  [--container <con
                           passwords etc. like this!
 EOT
 }
+GITLAB_GIT_URL="gitlab.internal.sanger.ac.uk/tol-it/software/docker-images.git"
 
 GITLAB_REGISTRY_SERVER="gitlab-registry.internal.sanger.ac.uk"
 GITLAB_REGISTRY_URL="gitlab-registry.internal.sanger.ac.uk/tol-it/software/docker-images"
@@ -94,13 +95,25 @@ echo "extra_build_args=$extra_build_args"
 
 if [ -z ${DOCKER_USER+x} ]
 then
-  echo Please set your gitlab login into variable DOCKER_USER
+  echo Please set your docker registry login into variable DOCKER_USER
   exit 1
 fi
 
 if [ -z ${DOCKER_TOKEN+x} ]
 then
-  echo Please set your personal token into variable DOCKER_TOKEN
+  echo Please set your personal docker registry token into variable DOCKER_TOKEN
+  exit 1
+fi
+
+if [ -z ${GITLAB_USER+x} ]
+then
+  echo Please set your gitlab login into variable GITLAB_USER
+  exit 1
+fi
+
+if [ -z ${GITLAB_TOKEN+x} ]
+then
+  echo Please set your personal token into variable GITLAB_TOKEN
   exit 1
 fi
 
@@ -148,5 +161,5 @@ if [[ ${building_not_testing} ]]; then
    echo "Tagging the repository with tag ${git_tag}"
    git tag "${git_tag}"
    echo "Pushing the git tag ${git_tag} to origin"
-   git push origin "${git_tag}"
+   git push "https://${GITLAB_USER}:${GITLAB_TOKEN}@${GITLAB_GIT_URL}" "${git_tag}"
 fi
