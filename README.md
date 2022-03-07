@@ -114,11 +114,13 @@ https://gitlab.internal.sanger.ac.uk/tol-it/software/docker-images/-/pipelines/n
   * select the right branch
   * APPLICATION_NAME = your_application_name
 * Private Docker image building for production
+  * only can run `main` branch
   * APPLICATION_NAME = your_application_name
   * BUILD_OR_TEST = build
 * Public Docker image building for production
-    * APPLICATION_NAME = your_application_name
-    * BUILD_OR_TEST = build
-    * DOCKER_REGISTRY = quay
+  * only can run `main` branch
+  * APPLICATION_NAME = your_application_name
+  * BUILD_OR_TEST = build
+  * DOCKER_REGISTRY = quay
   
-    ![Screenshot](quay_building_image_ui.png)
+   ![Screenshot](quay_building_image_ui.png)
