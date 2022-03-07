@@ -29,6 +29,7 @@ services:
 
 stages:
   - test
+  - build
 
 test_image:
   stage: test
@@ -41,3 +42,12 @@ test_image:
     - /bin/sh test.sh $APPLICATION_NAME
   rules:
     - if: '$APPLICATION_NAME != "empty" && $BUILD_OR_TEST == "test"'
+
+build_image:
+  stage: build
+  tags:
+    - openstack-autoscale-theta-docker-in-docker
+  script:
+    - /bin/sh build.sh $APPLICATION_NAME
+  rules:
+    - if: '$APPLICATION_NAME != "empty" && $BUILD_OR_TEST == "build" && $CI_COMMIT_BRANCH == "main"'
