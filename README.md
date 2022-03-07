@@ -32,13 +32,14 @@ The following environment variables need to be set to use the scripts below:
 
 If you build the image as production, the git repository needs to be tagged.
 Therefore, the following two variables needs to be set as well:
-* GITLAB_USER this would be the GITLab git repo username
-* GITLAB_TOKN this would be access token with the write-permission.
+* GITLAB_USER this would be the GitLab git repo username, it could be the same as DOCKER_USER in GitLab
+* GITLAB_TOKN this would be access token with the write-permission, it could be the same as DOCKER_TOKEN in GitLab
 
 ## Docker image building for tests
 The script ```test.sh``` will
 * build the docker image
 * push the image to our test remote gitlab docker registry
+
 Usage:
 ```
 ./test.sh <application> [--app_version <app version>] [--container <container version>]
