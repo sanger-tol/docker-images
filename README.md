@@ -98,8 +98,6 @@ The following GitLab CI/CD varialbes needs to set:
 * 
 * BUILD_OR_TEST default 'test', change to 'build' in GitLab UI if needed.
 * 
-* DOCKER_REGISTRY default 'gitlab', change to 'quay' in GitLab UI if needed, must match the value in file ```docker_build_parameters```
-* 
 * GITLAB_DOCKER_USER use them to push test images to Sanger GitLab and git tagging when building
 * GITLAB_DOCKER_TOKEN use them to push test images to Sanger GitLab and git tagging when building
 * 
@@ -125,7 +123,6 @@ https://gitlab.internal.sanger.ac.uk/tol-it/software/docker-images/-/pipelines/n
   * Only can select `main` branch
   * APPLICATION_NAME = your_application_name
   * BUILD_OR_TEST = build
-  * DOCKER_REGISTRY = quay
 
   Note: if this is your first time to create a docker image repository in Quay.io, you need to make it public in their website.
-   ![Screenshot](quay_building_image_ui.png)
+   ![Screenshot](build_image_ui.png)
