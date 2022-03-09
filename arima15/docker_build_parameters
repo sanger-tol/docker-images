@@ -17,4 +17,4 @@ extra_build_args=""
 # gitlab for sanger internal gitlab for private docker image
 # quay for quay.io for public docker image
 # not support any other values
-docker_registry="quay"
+docker_registry="gitlab"
