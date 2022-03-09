@@ -27,8 +27,8 @@ if [[ ! -d "$working_dir/$application" ]]; then
     exit 1
 fi
 
-if [[ -f "$working_dir/docker_build_parameters" ]]; then
-  source "$working_dir/docker_build_parameters"
+if [[ -f "$working_dir/$application/docker_build_parameters" ]]; then
+  source "$working_dir/$application/docker_build_parameters"
 fi
 
 # This script is only supposed to be used in GitLab CI/CD environment
