@@ -5,7 +5,7 @@ app_version="0.001"
 # Will be added as a suffix to your docker image tag
 # to allow container versioning, i.e. if you change the
 # Dockerfile without changing the application version
-container_version="21"
+container_version="22"
 
 # Optional, any extra arguments will be passed to the
 # docker build (e.g. '--build-arg "FOO=BAR"').  If
@@ -17,4 +17,4 @@ extra_build_args=""
 # gitlab for sanger internal gitlab for private docker image
 # quay for quay.io for public docker image
 # not support any other values
-docker_registry="gitlab"
+docker_registry="quay"
