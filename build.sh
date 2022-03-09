@@ -29,7 +29,7 @@ GITLAB_REGISTRY_SERVER="gitlab-registry.internal.sanger.ac.uk"
 GITLAB_REGISTRY_URL="gitlab-registry.internal.sanger.ac.uk/tol-it/software/docker-images"
 
 QUAY_REGISTRY_SERVER="quay.io"
-QUAY_REGISTRY_URL="quay.io/tol"
+QUAY_REGISTRY_URL="quay.io/sanger-tol"
 
 # get name used to invoke script
 invoked_name=$(echo $0 | sed 's~.*/~~')
