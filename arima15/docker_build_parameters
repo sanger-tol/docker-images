@@ -1,6 +1,6 @@
 # Will be passed as argument TAG to the docker build,
 # and will be the basis for your docker image tag
-app_version="0.001"
+app_version="0.002"
 
 # Will be added as a suffix to your docker image tag
 # to allow container versioning, i.e. if you change the
