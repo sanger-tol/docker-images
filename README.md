@@ -2,12 +2,12 @@
 
 Registry of docker containers and dockerfiles for any software that isn't available as a container publicly.
 
-Any docker images you don't want to publish publicly: 
+Any docker images you don't want to publish publicly:  
 https://gitlab.internal.sanger.ac.uk/tol-it/software/docker-images/container_registry  
-Otherwise:
-https://quay.io/organization/tol
+Otherwise:  
+https://quay.io/tol
 
-For test docker images: 
+For test docker images:  
 https://gitlab.internal.sanger.ac.uk/tol-it/software/docker-images-test/container_registry
 
 ## Structure
@@ -27,7 +27,7 @@ e.g. the first version of a container for an an application v3.2 would be tagged
 
 ## Prerequisite
 The following environment variables need to be set to use the scripts below:
-* DOCKER_USER this would be the GitLab or Quay login, ie your login
+* DOCKER_USER this would be the GitLab or Quay login, ie your login. This can be robot account from quay.
 * DOCKER_TOKEN this would be access token with the right permission
 
 If you build the image as production, the git repository needs to be tagged.
@@ -94,33 +94,37 @@ useful if you have an arbitrary `ARG` in your Dockerfile that you want to be abl
 ## Run test and build using GitLab CI
 ### Prerequisite
 The following GitLab CI/CD varialbes needs to set:
-* APPLICATION_NAME efault 'empty', change to the application folder name in GitLab UI
-
-* BUILD_OR_TEST default 'test', change to 'build' in GitLab UI if needed, must match the value in file ```docker_build_parameters```
-
-* DOCKER_REGISTRY default 'gitlab', change to 'quay' in GitLab UI if needed
-
+* APPLICATION_NAME default 'empty', change to the application folder name in GitLab UI
+* 
+* BUILD_OR_TEST default 'test', change to 'build' in GitLab UI if needed.
+* 
+* DOCKER_REGISTRY default 'gitlab', change to 'quay' in GitLab UI if needed, must match the value in file ```docker_build_parameters```
+* 
 * GITLAB_DOCKER_USER use them to push test images to Sanger GitLab and git tagging when building
 * GITLAB_DOCKER_TOKEN use them to push test images to Sanger GitLab and git tagging when building
-
+* 
+* CI_REGISTRY_USER use them to push production images to Sanger GitLab, no need to be set, pre-set by GitLab CI
+* CI_REGISTRY_PASSWORD use them to push production images to Sanger GitLab, no need to be set, pre-set by GitLab CI
+* 
 * QUAY_DOCKER_USER use them to push images to quay.io
 * QUAY_DOCKER_TOKEN use them to push images to quay.io
+
 
 ### GitLab Run Pipeline user interace
 Use the following user interface to build docker imeage by setting some variables using the form.  
 https://gitlab.internal.sanger.ac.uk/tol-it/software/docker-images/-/pipelines/new
 
 * Docker image building for tests
-  * select the right branch
+  * Select the right branch
   * APPLICATION_NAME = your_application_name
 * Private Docker image building for production
-  * only can run `main` branch
+  * Only can select `main` branch
   * APPLICATION_NAME = your_application_name
   * BUILD_OR_TEST = build
 * Public Docker image building for production
-  * only can run `main` branch
+  * Only can select `main` branch
   * APPLICATION_NAME = your_application_name
   * BUILD_OR_TEST = build
   * DOCKER_REGISTRY = quay
-  
+  Note: if this is you first time to create a docker image repository in Quay.io, you need to make it public in their website.
    ![Screenshot](quay_building_image_ui.png)
