@@ -8,5 +8,6 @@ https://github.com/orgs/sanger-tol/packages
 
 ### GITHUB_TOKEN
 1. GITHUB_TOKEN recommanded to be used in GitHub actions, it is a temp one only exists when the pipeline run.
-2. Make sure GITHUB_TOKEN have the write permission to the package and contents.
-3. You can create a personal access token and add as a secret of your repository, but it is a perment one.
+2. You can create a personal access token and add as a secret of your repository, but it is a perment one.
+3. Make sure GITHUB_TOKEN have the write permission to the package and contents.
+4. You can change the permssion either in UI or in the workflow ymal file.
