@@ -36,15 +36,25 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta_arima
+        uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
+        with:
+          images: ghcr.io/sanger-tol/arima
+
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta_fastk
+        uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
+        with:
+          images: ghcr.io/sanger-tol/fastk
+
       - name: Build arima image and push to GitHub Container Registry
         uses: docker/build-push-action@v2
         with:
           # relative path to the place where source code with Dockerfile is located
           context: ./arima
           # Note: tags has to be all lower-case
-          tags: |
-            ghcr.io/sanger-tol/arima:${{ GITHUB_SHA }}
-            ghcr.io/sanger-tol/arima:latest
+          tags: ${{ steps.meta_arima.outputs.tags }}
           # build on feature branches, push only on main branch
           push: ${{ github.ref == 'refs/heads/main' }}
 
@@ -54,9 +64,7 @@ jobs:
           # relative path to the place where source code with Dockerfile is located
           context: ./fastk
           # Note: tags has to be all lower-case
-          tags: |
-            ghcr.io/sanger-tol/fastk:${{ GITHUB_SHA }}
-            ghcr.io/sanger-tol/fastk:latest
+          tags: ${{ steps.meta_fastk.outputs.tags }}
           # build on feature branches, push only on main branch
           push: ${{ github.ref == 'refs/heads/main' }}
 
