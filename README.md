@@ -5,7 +5,8 @@ Registry of docker containers and dockerfiles for any software that isn't availa
 Any docker images you don't want to publish publicly:  
 https://gitlab.internal.sanger.ac.uk/tol-it/software/docker-images/container_registry  
 Otherwise:  
-https://quay.io/tol
+quay.io/sanger-tol
+ghcr.io/sanger-tol
 
 For test docker images:  
 https://gitlab.internal.sanger.ac.uk/tol-it/software/docker-images-test/container_registry
@@ -27,7 +28,7 @@ e.g. the first version of a container for an an application v3.2 would be tagged
 
 ## Prerequisite
 The following environment variables need to be set to use the scripts below:
-* DOCKER_USER this would be the GitLab or Quay login, ie your login. This can be robot account from quay.
+* DOCKER_USER this would be the GitLab, GitHub or Quay login, ie your login. This can be robot account from quay.
 * DOCKER_TOKEN this would be access token with the right permission
 
 If you build the image as production, the git repository needs to be tagged.
@@ -106,7 +107,9 @@ The following GitLab CI/CD varialbes needs to set:
 * 
 * QUAY_DOCKER_USER use them to push images to quay.io
 * QUAY_DOCKER_TOKEN use them to push images to quay.io
-
+*
+* GITHUB_DOCKER_USER use them to push images to ghcr.io
+* GITHUB_DOCKER_TOKEN use them to push images to ghcr.io
 
 ### GitLab Run Pipeline user interace
 Use the following user interface to build docker imeage by setting some variables using the form.  
