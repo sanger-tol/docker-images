@@ -127,5 +127,7 @@ https://gitlab.internal.sanger.ac.uk/tol-it/software/docker-images/-/pipelines/n
   * APPLICATION_NAME = your_application_name
   * BUILD_OR_TEST = build
 
-  Note: if this is your first time to create a docker image repository in Quay.io, you need to make it public in their website.
+  Note: if this is your first time to create a docker image repository in quay.io, you need to make it public in their website.
+        this is also true for ghcr.io.
+
    ![Screenshot](build_image_ui.png)
