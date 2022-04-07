@@ -11,3 +11,5 @@ https://github.com/orgs/sanger-tol/packages
 2. You can create a personal access token and add as a secret of your repository, but it is a perment one.
 3. Make sure GITHUB_TOKEN have the write permission to the package and contents.
 4. You can change the permssion either in UI or in the workflow ymal file.
+### Docker image visibility
+By default, the docker image is private. You can change it in the Package settings
