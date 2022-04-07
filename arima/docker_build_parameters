@@ -16,5 +16,6 @@ extra_build_args=""
 # docker image registry name
 # gitlab for sanger internal gitlab for private docker image
 # quay for quay.io for public docker image
+# github for ghcr.io
 # not support any other values
 docker_registry="github"
