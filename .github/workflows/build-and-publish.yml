@@ -36,14 +36,27 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build image and push to Docker Hub and GitHub Container Registry
+      - name: Build arima image and push to GitHub Container Registry
         uses: docker/build-push-action@v2
         with:
           # relative path to the place where source code with Dockerfile is located
           context: ./arima
           # Note: tags has to be all lower-case
           tags: |
-            ghcr.io/sanger-tol/arima:0.0.2
+            ghcr.io/sanger-tol/arima:${{ GITHUB_SHA }}
+            ghcr.io/sanger-tol/arima:latest
+          # build on feature branches, push only on main branch
+          push: ${{ github.ref == 'refs/heads/main' }}
+
+      - name: Build fastk image and push to GitHub Container Registry
+        uses: docker/build-push-action@v2
+        with:
+          # relative path to the place where source code with Dockerfile is located
+          context: ./fastk
+          # Note: tags has to be all lower-case
+          tags: |
+            ghcr.io/sanger-tol/fastk:${{ GITHUB_SHA }}
+            ghcr.io/sanger-tol/fastk:latest
           # build on feature branches, push only on main branch
           push: ${{ github.ref == 'refs/heads/main' }}
 
