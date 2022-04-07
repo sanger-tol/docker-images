@@ -5,7 +5,7 @@ Registry of docker containers and dockerfiles for any software that isn't availa
 Any docker images you don't want to publish publicly:  
 https://gitlab.internal.sanger.ac.uk/tol-it/software/docker-images/container_registry  
 Otherwise:  
-quay.io/sanger-tol
+quay.io/sanger-tol  
 ghcr.io/sanger-tol
 
 For test docker images:  
