@@ -58,7 +58,7 @@ build_image:
     - apk add --no-cache git
     # check whether the docker registry is quay, and set the username and password
     - source "${APPLICATION_NAME}/docker_build_parameters"
-    - if [ ${docker_registry} == "quay" ]; then  export DOCKER_USER=${QUAY_DOCKER_USER}; export DOCKER_TOKEN=${QUAY_DOCKER_TOKEN}; fi
+    - if [ ${docker_registry} == "quay" ]; then  export DOCKER_USER=${QUAY_DOCKER_USER}; export DOCKER_TOKEN=${QUAY_DOCKER_TOKEN}; elif [ ${docker_registry} == "github" ]; then  export DOCKER_USER=${GITHUB_DOCKER_USER}; export DOCKER_TOKEN=${GITHUB_DOCKER_TOKEN}; fi
     - /bin/sh build.sh ${APPLICATION_NAME}
   rules:
     - if: '$APPLICATION_NAME != "empty" && $BUILD_OR_TEST == "build" && $CI_COMMIT_BRANCH == "main"'
