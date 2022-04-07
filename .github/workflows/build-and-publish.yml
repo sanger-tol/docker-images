@@ -38,7 +38,7 @@ jobs:
           context: ./arima
           # Note: tags has to be all lower-case
           tags: |
-            ghcr.io/gq1/arima:0.0.2
+            ghcr.io/sanger-tol/arima:0.0.2
           # build on feature branches, push only on main branch
           push: ${{ github.ref == 'refs/heads/main' }}
 
