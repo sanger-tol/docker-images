@@ -43,7 +43,8 @@ jobs:
           context: ./arima
           # Note: tags has to be all lower-case
           tags: |
-            ghcr.io/sanger-tol/arima:0.0.2
+            ghcr.io/sanger-tol/arima:${ GITHUB_SHA::6 }
+            ghcr.io/sanger-tol/arima:latest
           # build on feature branches, push only on main branch
           push: ${{ github.ref == 'refs/heads/main' }}
 
@@ -54,7 +55,8 @@ jobs:
           context: ./fastk
           # Note: tags has to be all lower-case
           tags: |
-            ghcr.io/sanger-tol/fastk:0.0.2
+            ghcr.io/sanger-tol/fastk:${ GITHUB_SHA::6 }
+            ghcr.io/sanger-tol/fastk:latest
           # build on feature branches, push only on main branch
           push: ${{ github.ref == 'refs/heads/main' }}
 
