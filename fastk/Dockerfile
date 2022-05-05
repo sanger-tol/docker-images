@@ -28,12 +28,15 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /tmp
 RUN git clone https://github.com/thegenemyers/FASTK.git && \
     (cd FASTK &&    \
+    git rev-parse HEAD > /usr/local/src/FASTK.version && \
     make && make DEST_DIR=/usr/local/bin install) && \
     git clone https://github.com/thegenemyers/MERQURY.FK.git && \
     (cd MERQURY.FK && \
+    git rev-parse HEAD > /usr/local/src/MERQURY.FK.version && \
     make && make DEST_DIR=/usr/local/bin install) && \
     git clone https://github.com/thegenemyers/GENESCOPE.FK.git && \
     (cd GENESCOPE.FK && \
+    git rev-parse HEAD > /usr/local/src/GENESCOPE.FK.version && \
     Rscript -e 'install.packages("argparse", dependencies=TRUE)' && \
     Rscript -e 'install.packages("minpack.lm", dependencies=TRUE)' && \
     Rscript -e 'install.packages("ggplot2", dependencies=TRUE)' && \
