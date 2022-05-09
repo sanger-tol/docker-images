@@ -3,7 +3,7 @@ FROM ubuntu:20.04
 ARG TAG=2.2.2
 ARG NAME=longranger-$TAG
 ARG SRC_FILE=$NAME.tar.gz
-ARG SRC_PATH=https://tolit.cog.sanger.ac.uk/software/src/$SRC_FILE
+ARG SRC_PATH=https://tolit.cog.sanger.ac.uk/software/$SRC_FILE
 ARG DEST=/opt
 
 LABEL base_image="ubuntu:20.04"
