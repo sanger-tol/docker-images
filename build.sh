@@ -31,6 +31,9 @@ GITLAB_REGISTRY_URL="gitlab-registry.internal.sanger.ac.uk/tol-it/software/docke
 QUAY_REGISTRY_SERVER="quay.io"
 QUAY_REGISTRY_URL="quay.io/sanger-tol"
 
+GITHUB_REGISTRY_SERVER="ghcr.io"
+GITHUB_REGISTRY_URL="ghcr.io/sanger-tol"
+
 # get name used to invoke script
 invoked_name=$(echo $0 | sed 's~.*/~~')
 if [[ $invoked_name =~ ^build ]]; then
@@ -136,6 +139,9 @@ if [[ ${building_not_testing} ]]; then
   elif [[ "quay" == "$docker_registry" ]]; then
     docker_registry_server=$QUAY_REGISTRY_SERVER
     docker_registry_url=$QUAY_REGISTRY_URL
+  elif [[ "github" == "$docker_registry" ]]; then
+    docker_registry_server=$GITHUB_REGISTRY_SERVER
+    docker_registry_url=$GITHUB_REGISTRY_URL
   else
     echo "Given docker regisry $docker_registry NOT allowed!"
     usage
