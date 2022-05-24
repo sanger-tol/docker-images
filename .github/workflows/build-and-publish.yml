@@ -36,5 +36,6 @@ jobs:
             applications+=${file%%/*}
           done
           sorted_applications=($(echo "${applications[@]}" | tr ' ' '\n' | sort -u | tr '\n' ' '))
-          echo "${sorted_applications[@]}" | tr ' ' '\n'
-
+          for f in $(sorted_applications[@]); do
+            echo $f
+          done
