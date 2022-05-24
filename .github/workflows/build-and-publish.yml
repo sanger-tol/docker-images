@@ -25,6 +25,6 @@ jobs:
         run: |
           applications=()
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-            applicatons+=${file%%/*}
+            applications+=${file%%/*}
           done
           echo ${applications// /|}
