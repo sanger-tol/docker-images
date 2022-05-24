@@ -33,7 +33,7 @@ jobs:
         run: |
           applications=()
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-            applications+=${file%%/*}
+            applications+=(${file%%/*})
           done
           sorted_applications=($(printf "%s\n" "${applications[@]}" | sort -u))
           echo "${sorted_applications[@]}"
