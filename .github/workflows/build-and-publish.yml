@@ -38,8 +38,8 @@ jobs:
             applications+=(${file%%/*})
           done
           sorted_applications=($(printf "%s\n" "${applications[@]}" | sort -u))
-          echo "${sorted_applications[@]}"
-          echo "::set-output name=apps::hello"
+          apps=$(printf "\"%s\"，" "${sorted_applications[@]}"
+          echo "::set-output name=apps::[$apps]"
   
   build:
     runs-on: ubuntu-latest
