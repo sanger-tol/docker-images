@@ -51,7 +51,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        tags: ${{ needs.changes.outputs.changes }}
+        tags: ["${{ needs.changes.outputs.changes }}"]
     
     steps:
         - uses: actions/checkout@v2
