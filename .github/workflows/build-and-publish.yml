@@ -41,6 +41,20 @@ jobs:
           echo "${sorted_applications[@]}"
           outputlist=$(printf "\"%s\"," "${sorted_applications[@]}")
           echo $outputlist
+          echo "::set-output name=changed-applications::$outputlist"
   
-      - name: test
-        run: echo $outputlist
+  images:
+    runs-on: ubuntu-latest
+    name: Test output
+    needs: changes
+    if: needs.changes.output.changes != '[]'
+    strategy:
+      fail-fast: false
+      matrix:
+        tags: ${{ needs.changes.outputs.changes }}
+    
+    steps:
+        - uses: actions/checkout@v2
+
+        - name: test1
+          run: echo ${{ matrix.tags }}
