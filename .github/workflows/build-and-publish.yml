@@ -28,5 +28,5 @@ jobs:
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             applications+=${file%%/*}
           done
-          sorted_applications=($(echo "${applications[@]}" | tr ' ' '\n' | sort -u | tr '\n' ' '))
+          sorted_applications=($(echo "${applications[@]}" | tr ' ' '\n' | sort -u | tr '\n' ' ')
           echo "${sorted_applications[@]}" | tr ' ' '\n'
