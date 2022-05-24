@@ -39,7 +39,7 @@ jobs:
           done
           sorted_applications=($(printf "%s\n" "${applications[@]}" | sort -u))
           echo "${sorted_applications[@]}"
-          echo "::set-output name=apps::green"
+          echo "::set-output name=apps::hello"
   
   build:
     runs-on: ubuntu-latest
@@ -49,4 +49,6 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: test1
-        run: echo ${{ needs.changes.outputs.apps }}
+        run: |
+          echo ${{needs.changes.outputs.apps}}
+          echo "done"
