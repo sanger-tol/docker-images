@@ -19,3 +19,5 @@ extra_build_args=""
 # quay for quay.io for public docker image
 # not support any other values
 docker_registry="quay"
+
+
