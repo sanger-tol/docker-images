@@ -39,21 +39,17 @@ jobs:
           done
           sorted_applications=($(printf "%s\n" "${applications[@]}" | sort -u))
           echo "${sorted_applications[@]}"
-          outputlist=$(printf "\"%s\"," "${sorted_applications[@]}")
+          outputlist=${{ join(${sorted_applications[@]}, ',') }}
           echo $outputlist
-          echo "::set-output name=changed-applications::[{\"project\":\"foo\",\"config\":\"Debug\"},{\"project\":\"bar\",\"config\":\"Release\"}]"
+          echo "::set-output name=changed-applications::$outputlist"
   
   images:
     runs-on: ubuntu-latest
     name: Test output
     needs: changes
-    strategy:
-      fail-fast: false
-      matrix:
-        tags: ["${{fromJSON(needs.changes.outputs.changes)}}"]
     
     steps:
         - uses: actions/checkout@v2
 
         - name: test1
-          run: echo ${{ matrix.tags }}
+          run: echo ${{ needs.changes.outputs.changes }}
