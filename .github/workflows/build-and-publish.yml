@@ -37,8 +37,8 @@ jobs:
           done
           sorted_applications=($(printf "%s\n" "${applications[@]}" | sort -u))
           echo "${sorted_applications[@]}"
-          echo "::set-output name=changed-applications::${{ toJson(${sorted_applications[@]}) }}"
+          echo "::set-output name=changed-applications::green"
     
       - name: Test output
         id: test-output
-        run: echo ${{ fromJson(steps.changed-applications.output.changed-applications) }}
+        run: echo ${{ steps.changed-applications.output.changed-applications }}
