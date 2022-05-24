@@ -41,7 +41,7 @@ jobs:
           echo "${sorted_applications[@]}"
           outputlist=$(printf "\"%s\"," "${sorted_applications[@]}")
           echo $outputlist
-          echo "::set-output name=changed-applications::$outputlist"
+          echo "::set-output name=changed-applications::{\"include\":[{\"project\":\"foo\",\"config\":\"Debug\"},{\"project\":\"bar\",\"config\":\"Release\"}]}"
   
   images:
     runs-on: ubuntu-latest
@@ -50,7 +50,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        tags: ["${{ needs.changes.outputs.changes }}"]
+        tags: ${{fromJSON(needs.changes.outputs.changes)}}
     
     steps:
         - uses: actions/checkout@v2
