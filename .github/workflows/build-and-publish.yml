@@ -39,6 +39,7 @@ jobs:
           done
           sorted_applications=($(printf "%s\n" "${applications[@]}" | sort -u))
           apps=$(printf "\"%s\"，" "${sorted_applications[@]}")
+          apps=${apps::-1}
           echo "::set-output name=apps::[$apps]"
   
   build:
