@@ -21,10 +21,18 @@ jobs:
         id: changed-files
         uses: tj-actions/changed-files@v20.2
 
-      - name: List all changed files
+      - name: Find changed applications
+        id: changed-applications
         run: |
           applications=()
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             applications+=${file%%/*}
           done
-          echo ${applications// /|}
+          echo "::set-output name=changed-applications::($(echo "${applications[@]}" | tr ' ' '\n' | sort -u | tr '\n' ' '))"
+
+      - name: Build docker images
+        id: build_docker
+        run: |
+          for app in  ${{ steps.changed-applications.output.changed-applications }}; do
+            echo $app
+          done
