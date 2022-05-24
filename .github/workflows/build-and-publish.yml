@@ -41,7 +41,7 @@ jobs:
           echo "${sorted_applications[@]}"
           outputlist=$(printf "\"%s\"," "${sorted_applications[@]}")
           echo $outputlist
-          echo "::set-output name=changed-applications::[ $outputlist ]"
+          echo "::set-output name=changed-applications::[ \"green\" ]"
   
   images:
     runs-on: ubuntu-latest
