@@ -9,9 +9,11 @@ on:
       - main
 
 jobs:
-  build:
+  changes:
     runs-on: ubuntu-latest  # windows-latest | macos-latest
     name: Test changed-files
+    outputs:
+      changes: ${{ steps.changed-applications.output.changed-applications }}
     steps:
       - uses: actions/checkout@v3
         with:
@@ -38,7 +40,19 @@ jobs:
           sorted_applications=($(printf "%s\n" "${applications[@]}" | sort -u))
           echo "${sorted_applications[@]}"
           echo "::set-output name=changed-applications::green"
+  
+  images:
+    runs-on: ubuntu-latest
+    name: Test output
+    needs: changes
+    if: needs.changes.output.changes != '[]'
+    strategy:
+      fail-fast: false
+      matrix:
+        tags: ["${{ fromJson(needs.changes.output.changes) }}"]
     
-      - name: Test output
-        id: test-output
-        run: echo ${{ steps.changed-applications.output.changed-applications }}
+    steps:
+        - uses: actions/checkout@v2
+
+        - name: test1
+          run: echo ${{ matrix.tags }}
