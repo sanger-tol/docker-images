@@ -47,7 +47,6 @@ jobs:
     runs-on: ubuntu-latest
     name: Test output
     needs: changes
-    if: needs.changes.output.changes != '[]'
     strategy:
       fail-fast: false
       matrix:
