@@ -11,9 +11,9 @@ on:
 jobs:
   changes:
     runs-on: ubuntu-latest  # windows-latest | macos-latest
-    name: Test changed-files
+    name: Test changed files
     outputs:
-      changes: ${{ steps.changed-applications.output.changed-applications }}
+      changes: ${{ steps.changed-applications.output.apps }}
     steps:
       - uses: actions/checkout@v3
         with:
@@ -39,15 +39,14 @@ jobs:
           done
           sorted_applications=($(printf "%s\n" "${applications[@]}" | sort -u))
           echo "${sorted_applications[@]}"
-          echo "::set-output name=changed-applications::green"
+          echo "::set-output name=apps::green"
   
-  images:
+  build:
     runs-on: ubuntu-latest
-    name: Test output
+    name: Build images
     needs: changes
-    
     steps:
-        - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
-        - name: test1
-          run: echo ${{ needs.changes.outputs.changes }}
+      - name: test1
+        run: echo ${{ needs.changes.outputs.changes }}
