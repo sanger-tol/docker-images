@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest  # windows-latest | macos-latest
     name: Test changed files
     outputs:
-      apps: ${{ steps.changed-applications.output.apps }}
+      apps: ${{ steps.changed-applications.outputs.apps }}
     steps:
       - uses: actions/checkout@v3
         with:
