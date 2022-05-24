@@ -45,10 +45,16 @@ jobs:
     runs-on: ubuntu-latest
     name: Build images
     needs: changes
+    if: needs.changes.outputs.apps != '[]'
+    strategy:
+      fail-fast: false
+      matrix:
+        tags: ["${{ fromJson(needs.changes.outputs.apps) }}"]
     steps:
       - uses: actions/checkout@v3
 
       - name: test1
         run: |
           echo ${{needs.changes.outputs.apps}}
+          echo ${{ matrix.tags }}
           echo "done"
