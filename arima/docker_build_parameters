@@ -2,6 +2,8 @@
 # and will be the basis for your docker image tag
 app_version="0.001"
 
+
+
 # Will be added as a suffix to your docker image tag
 # to allow container versioning, i.e. if you change the
 # Dockerfile without changing the application version
