@@ -39,7 +39,7 @@ jobs:
           done
           sorted_applications=($(printf "%s\n" "${applications[@]}" | sort -u))
           echo "${sorted_applications[@]}"
-          echo "::set-output name=changed-applications::green"
+          echo "::set-output name=changed-applications::[\"green\"]"
   
   images:
     runs-on: ubuntu-latest
