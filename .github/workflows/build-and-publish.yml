@@ -28,11 +28,5 @@ jobs:
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             applications+=${file%%/*}
           done
-          echo "::set-output name=changed-applications::($(echo "${applications[@]}" | tr ' ' '\n' | sort -u | tr '\n' ' '))"
-
-      - name: Build docker images
-        id: build_docker
-        run: |
-          for app in  ${{ steps.changed-applications.output.changed-applications }}; do
-            echo $app
-          done
+          sorted_applications=($(echo "${applications[@]}" | tr ' ' '\n' | sort -u | tr '\n' ' '))
+          echo "${sorted_applications[@]}" | tr ' ' '\n'
