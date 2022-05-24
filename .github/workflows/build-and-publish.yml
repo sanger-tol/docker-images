@@ -41,20 +41,6 @@ jobs:
           echo "${sorted_applications[@]}"
           outputlist=$(printf "\"%s\"," "${sorted_applications[@]}")
           echo $outputlist
-          echo "::set-output name=changed-applications::{[ \"green\" ]}"
   
-  images:
-    runs-on: ubuntu-latest
-    name: Test output
-    needs: changes
-    if: needs.changes.output.changes != '[]'
-    strategy:
-      fail-fast: false
-      matrix:
-        tags: ${{ fromJson(needs.changes.outputs.changes) }}
-    
-    steps:
-        - uses: actions/checkout@v2
-
-        - name: test1
-          run: echo ${{ matrix.tags }}
+      - name: test
+        run: echo $outputlist
