@@ -51,7 +51,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        tags: ["${{ fromJson(needs.changes.output.changes) }}"]
+        tags: ${{ fromJson(needs.changes.outputs.changes) }}
     
     steps:
         - uses: actions/checkout@v2
