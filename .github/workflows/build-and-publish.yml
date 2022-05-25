@@ -38,7 +38,7 @@ jobs:
             applications+=(${file%%/*})
           done
           sorted_applications=($(printf "%s\n" "${applications[@]}" | sort -u))
-          apps=$(printf "\"%s\"，" "${sorted_applications[@]}")
+          apps=$(printf "\"%s\"," "${sorted_applications[@]}")
           apps=${apps::-1}
           echo "Changed applications: $apps"
           echo "::set-output name=apps::[ $apps ]"
