@@ -48,7 +48,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Build Docker images
     needs: changes
-    if: needs.changes.outputs.apps != '[]'
+    if: needs.changes.outputs.apps != '[""]'
     strategy:
       fail-fast: false
       matrix:
