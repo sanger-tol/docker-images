@@ -157,7 +157,7 @@ docker build -t "${docker_tag}" --build-arg "TAG=${app_version}" ${extra_build_a
 echo "Docker login"
 echo "${DOCKER_TOKEN}" | docker login -u "${DOCKER_USER}" --password-stdin "${docker_registry_server}"
 
-echo "Tagging remote docker registry: "${remote_docker_tag}"
+echo "Tagging remote docker registry: ${remote_docker_tag}"
 docker tag "${docker_tag}" "${remote_docker_tag}"
 
 echo "Pushing docker image to registry"
