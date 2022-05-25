@@ -48,7 +48,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Build Docker images
     needs: changes
-    if: needs.changes.outputs.apps != '[""]'
+    if: needs.changes.outputs.apps != '[ "" ]'
     strategy:
       fail-fast: false
       matrix:
@@ -58,5 +58,4 @@ jobs:
 
       - name: test1
         run: |
-          echo ${{needs.changes.outputs.apps}}
           echo ${{ matrix.apps }}
