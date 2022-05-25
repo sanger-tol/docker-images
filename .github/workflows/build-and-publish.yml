@@ -41,7 +41,8 @@ jobs:
           apps=$(printf "\"%s\"，" "${sorted_applications[@]}")
           apps=${apps::-1}
           echo "Changed applications: $apps"
-          echo "::set-output name=apps::[$apps]"
+          echo "::set-output name=apps::[ $apps ]"
+          echo ${{ steps.changed-applications.outputs.apps }}
   
   build:
     runs-on: ubuntu-latest
@@ -58,4 +59,4 @@ jobs:
       - name: test1
         run: |
           echo ${{needs.changes.outputs.apps}}
-          echo ${{ matrix.tags }}
+          echo ${{ matrix.apps }}
