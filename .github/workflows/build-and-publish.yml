@@ -10,7 +10,7 @@ on:
 
 jobs:
   changes:
-    runs-on: ubuntu-latest  # windows-latest | macos-latest
+    runs-on: ubuntu-latest
     name: Test changed files
     outputs:
       apps: ${{ steps.changed-applications.outputs.apps }}
@@ -40,17 +40,18 @@ jobs:
           sorted_applications=($(printf "%s\n" "${applications[@]}" | sort -u))
           apps=$(printf "%s，" "${sorted_applications[@]}")
           apps=${apps::-1}
+          echo "Changed applications: $apps"
           echo "::set-output name=apps::[$apps]"
   
   build:
     runs-on: ubuntu-latest
-    name: Build images
+    name: Build Docker images
     needs: changes
     if: needs.changes.outputs.apps != '[]'
     strategy:
       fail-fast: false
       matrix:
-        tags: ["${{ fromJson(needs.changes.outputs.apps) }}"]
+        apps: ["${{ fromJson(needs.changes.outputs.apps) }}"]
     steps:
       - uses: actions/checkout@v3
 
