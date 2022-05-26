@@ -62,3 +62,15 @@ build_image:
     - /bin/sh build.sh ${APPLICATION_NAME}
   rules:
     - if: '$APPLICATION_NAME != "empty" && $BUILD_OR_TEST == "build" && $CI_COMMIT_BRANCH == "main"'
+
+auto_build_images:
+  stage: build
+  tags:
+    - openstack-autoscale-theta-docker-in-docker
+  script:
+    - echo "Auto building images"
+    - apk add --no-cache git bash
+    - ./check_changes.sh
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == "main"'
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
