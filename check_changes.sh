@@ -45,6 +45,9 @@ for app in "${sorted_applications[@]}"; do
     elif [ ${docker_registry} == "github" ]; then
       export DOCKER_USER=${GITHUB_DOCKER_USER};
       export DOCKER_TOKEN=${GITHUB_DOCKER_TOKEN};
+    elif [ ${docker_registry} == "gitlab" ]; then
+       export DOCKER_USER=${CI_REGISTRY_USER};
+       export DOCKER_TOKEN=${CI_REGISTRY_PASSWORD};
     fi
 
     ./build.sh $app
