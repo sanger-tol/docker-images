@@ -5,7 +5,7 @@ app_version="0.001"
 # Will be added as a suffix to your docker image tag
 # to allow container versioning, i.e. if you change the
 # Dockerfile without changing the application version
-container_version="3"
+container_version="4"
 
 # Optional, any extra arguments will be passed to the
 # docker build (e.g. '--build-arg "FOO=BAR"').  If
