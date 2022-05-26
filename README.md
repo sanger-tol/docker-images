@@ -132,16 +132,16 @@ https://gitlab.internal.sanger.ac.uk/tol-it/software/docker-images/-/pipelines/n
 
   ![Screenshot](build_image_ui.png)
 
+## Build Docker images automatically by GitLab CI/CD pipeline
+1. Create a new branch from the main branch
+2. Add your Dockerfile in a newly created directory usisng the above insturction
+3. Make a merge request from your branch to the main branch once you finish: https://gitlab.internal.sanger.ac.uk/tol-it/software/docker-images/-/merge_requests
+4. Check GitLab CI/CD pipeline is running: https://gitlab.internal.sanger.ac.uk/tol-it/software/docker-images/-/pipelines
+5. Your testing Docker images should be built and pushed here: https://gitlab.internal.sanger.ac.uk/tol-it/software/docker-images-test/container_registry
+6. If anything fails, update your branch and repeat step 4-5.
+7. Ask somebody to approve your merge request and your Docker images should be built and pushed automatically by GitLab.
+8. Check and use your Docker images from the offical registry, either GitHub, GitLab or Quay.
+9. For any reason, building or pushing in step 7 may fail. Try build your images manually uing Run Pipeline user interface.https://gitlab.internal.sanger.ac.uk/tol-it/software/docker-images/-/pipelines/new
 
-### GitHub Actioon
-The GitHub workflow will build the Docker images when a pull request made and push the images in GitHub container registry:
-
-https://github.com/orgs/sanger-tol/packages
-
-### GITHUB_TOKEN
-1. GITHUB_TOKEN recommanded to be used in GitHub actions, it is a temp one only exists when the pipeline run.
-2. You can create a personal access token and add as a secret of your repository, but it is a perment one.
-3. Make sure GITHUB_TOKEN have the write permission to the package and contents.
-4. You can change the permssion either in UI or in the workflow ymal file.
-### Docker image visibility
-By default, the docker image is private. You can change it in the Package settings
+## GitHub mirroring
+This repository is mirrored in GitHub: https://github.com/sanger-tol/docker-images
