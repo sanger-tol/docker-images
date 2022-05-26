@@ -23,17 +23,21 @@ for file in $(git diff --name-only $compare_sha); do
   fi
 
 done
+
 sorted_applications=($(printf "%s\n" "${applications[@]}" | sort -u))
+
+echo "All changed applicatons:"
 printf "%s\n" "${sorted_applications[@]}"
 
+echo "Building images now"
 for app in "${sorted_applications[@]}"; do
   echo "Building Docker images for $app"
   if [[ $CI_COMMIT_BRANCH == "main" ]]
   then
-    echo "Building production images"
+    echo "production images"
     ./build.sh $app
   else
-    echo "Building testing images"
+    echo "testing images"
     ./test.sh $app
   fi
 done
