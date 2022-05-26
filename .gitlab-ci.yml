@@ -24,6 +24,8 @@ variables:
   # as DOCKER_USER and TOKEN
   DOCKER_USER: ${CI_REGISTRY_USER}
   DOCKER_TOKEN: ${CI_REGISTRY_PASSWORD}
+  GITLAB_USER: ${GITLAB_DOCKER_USER}
+  GITLAB_TOKEN: ${GITLAB_DOCKER_TOKEN}
 
 services:
   - docker:20.10.12-dind
@@ -47,11 +49,6 @@ test_image:
 
 build_image:
   stage: build
-  variables:
-    # building images will do git tagging as well, git repo username and token maybe different
-    # We set them same for both docker images and git repo in Sanger gitlab
-    GITLAB_USER: ${GITLAB_DOCKER_USER}
-    GITLAB_TOKEN: ${GITLAB_DOCKER_TOKEN}
   tags:
     - openstack-autoscale-theta-docker-in-docker
   script:

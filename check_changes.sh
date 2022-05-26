@@ -36,9 +36,24 @@ for app in "${sorted_applications[@]}"; do
   if [[ $CI_COMMIT_BRANCH == "main" ]]
   then
     echo "production images"
+    
+    source "${app}/docker_build_parameters"
+    # change DOCKER_USER and DOCKER_TOKEN if not gitlab's default ones
+    if [ ${docker_registry} == "quay" ]; then
+      export DOCKER_USER=${QUAY_DOCKER_USER};
+      export DOCKER_TOKEN=${QUAY_DOCKER_TOKEN};
+    elif [ ${docker_registry} == "github" ]; then
+      export DOCKER_USER=${GITHUB_DOCKER_USER};
+      export DOCKER_TOKEN=${GITHUB_DOCKER_TOKEN};
+    fi
+
     ./build.sh $app
+
   else
     echo "testing images"
+    # Dont't use default GITLAB Token for testing images because different repository
+    export DOCKER_USER=${GITLAB_DOCKER_USER}
+    export DOCKER_TOKEN=${GITLAB_DOCKER_TOKEN}
     ./test.sh $app
   fi
 done
