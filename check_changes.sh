@@ -15,6 +15,7 @@ else
 fi
 
 applications=()
+echo "All changed files:"
 for file in $(git diff --name-only $compare_sha); do
   echo $file
   if [[ $file == *\/* && $file != *\.github\/* ]]
@@ -29,7 +30,7 @@ sorted_applications=($(printf "%s\n" "${applications[@]}" | sort -u))
 echo "All changed applicatons:"
 printf "%s\n" "${sorted_applications[@]}"
 
-echo "Building images now"
+echo "Building images now:"
 for app in "${sorted_applications[@]}"; do
   echo "Building Docker images for $app"
   if [[ $CI_COMMIT_BRANCH == "main" ]]
