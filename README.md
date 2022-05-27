@@ -4,6 +4,7 @@ Registry of docker containers and dockerfiles for any software that isn't availa
 
 Any docker images you don't want to publish publicly:  
 https://gitlab.internal.sanger.ac.uk/tol-it/software/docker-images/container_registry  
+
 Otherwise:  
 quay.io/sanger-tol  
 ghcr.io/sanger-tol
@@ -111,37 +112,43 @@ The following GitLab CI/CD varialbes needs to set:
 * GITHUB_DOCKER_USER use them to push images to ghcr.io
 * GITHUB_DOCKER_TOKEN use them to push images to ghcr.io
 
-### GitLab Run Pipeline user interace
-Use the following user interface to build docker imeage by setting some variables using the form.  
+### Build Docker images automatically by GitLab CI/CD pipeline
+1. Create a new branch from the main branch.
+2. Add your Dockerfile in a newly created directory usisng the above insturction.
+3. Or update the Dockerfile and related files, in this case, don't forget to update the app_versio or container_version for build parameters.
+4. Make a merge request from your branch to the main branch once you finish:  
+   https://gitlab.internal.sanger.ac.uk/tol-it/software/docker-images/-/merge_requests
+5. Check GitLab CI/CD pipeline is running:  
+   https://gitlab.internal.sanger.ac.uk/tol-it/software/docker-images/-/pipelines
+6. Your testing Docker images should be built and pushed here:  
+   https://gitlab.internal.sanger.ac.uk/tol-it/software/docker-images-test/container_registry
+7. If anything fails, update your branch and repeat step 4-5.
+8. Ask somebody to approve your merge request and your Docker images should be built and pushed automatically by GitLab.
+9. Check and use your Docker images from the Docker image registry your defined, either GitHub, GitLab or Quay.
+10. For any reason, building or pushing docker image in step 7 may fail:
+    * You can re-run the above GitLab steps.
+    * or start the pipeline manually using GitLab Run Pipeline user interface.
+
+### GitLab Run Pipeline user interace (manually run)
+Use the following user interface to build docker image by setting some variables using the form.  
 https://gitlab.internal.sanger.ac.uk/tol-it/software/docker-images/-/pipelines/new
 
 * Docker image building for tests
-    * Select the right branch
-    * APPLICATION_NAME = your_application_name
+  * Select the right branch
+  * APPLICATION_NAME = your_application_name
 * Private Docker image building for production
-    * Only can select `main` branch
-    * APPLICATION_NAME = your_application_name
-    * BUILD_OR_TEST = build
+  * Only can select `main` branch
+  * APPLICATION_NAME = your_application_name
+  * BUILD_OR_TEST = build
 * Public Docker image building for production
-    * Only can select `main` branch
-    * APPLICATION_NAME = your_application_name
-    * BUILD_OR_TEST = build
+  * Only can select `main` branch
+  * APPLICATION_NAME = your_application_name
+  * BUILD_OR_TEST = build
 
   Note: if this is your first time to create a docker image repository in quay.io, you need to make it public in their website.
   this is also true for ghcr.io.
 
   ![Screenshot](build_image_ui.png)
-
-## Build Docker images automatically by GitLab CI/CD pipeline
-1. Create a new branch from the main branch
-2. Add your Dockerfile in a newly created directory usisng the above insturction
-3. Make a merge request from your branch to the main branch once you finish: https://gitlab.internal.sanger.ac.uk/tol-it/software/docker-images/-/merge_requests
-4. Check GitLab CI/CD pipeline is running: https://gitlab.internal.sanger.ac.uk/tol-it/software/docker-images/-/pipelines
-5. Your testing Docker images should be built and pushed here: https://gitlab.internal.sanger.ac.uk/tol-it/software/docker-images-test/container_registry
-6. If anything fails, update your branch and repeat step 4-5.
-7. Ask somebody to approve your merge request and your Docker images should be built and pushed automatically by GitLab.
-8. Check and use your Docker images from the offical registry, either GitHub, GitLab or Quay.
-9. For any reason, building or pushing in step 7 may fail. Try build your images manually uing Run Pipeline user interface.https://gitlab.internal.sanger.ac.uk/tol-it/software/docker-images/-/pipelines/new
 
 ## GitHub mirroring
 This repository is mirrored in GitHub: https://github.com/sanger-tol/docker-images
