@@ -2,10 +2,10 @@
 
 Registry of docker containers and dockerfiles for any software that isn't available as a container publicly.
 
-Any docker images you don't want to publish publicly:  
+Any docker images you don't want to publish publicly, we keep in Sanger GitLab:  
 https://gitlab.internal.sanger.ac.uk/tol-it/software/docker-images/container_registry  
 
-Otherwise:  
+Otherwise you can choose one of public registries:  
 quay.io/sanger-tol  
 ghcr.io/sanger-tol
 
@@ -113,7 +113,7 @@ The following GitLab CI/CD varialbes needs to set:
 * GITHUB_DOCKER_TOKEN use them to push images to ghcr.io
 
 ### Build Docker images automatically by GitLab CI/CD pipeline
-Building or testing pipeline for your application should be triggered automatically when you add or updte an application and push or make an merge request.
+Building or testing pipeline for your application should be triggered automatically when you add or updte an application and push or make a merge request.
 
 1. Create a new branch from the main branch.
 2. Add your Dockerfile in a newly created directory usisng the above insturction.
