@@ -165,7 +165,7 @@ docker push "${remote_docker_tag}"
 
 if [[ ${building_not_testing} ]]; then
    echo "Tagging the repository with tag ${git_tag}"
-   git tag "${git_tag}"
+   git tag -f "${git_tag}"
    echo "Pushing the git tag ${git_tag} to origin"
    git push "https://${GITLAB_USER}:${GITLAB_TOKEN}@${GITLAB_GIT_URL}" "${git_tag}"
 fi
