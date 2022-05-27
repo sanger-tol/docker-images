@@ -113,6 +113,8 @@ The following GitLab CI/CD varialbes needs to set:
 * GITHUB_DOCKER_TOKEN use them to push images to ghcr.io
 
 ### Build Docker images automatically by GitLab CI/CD pipeline
+Building or testing pipeline for your application should be triggered automatically when you add or updte an application and push or make an merge request.
+
 1. Create a new branch from the main branch.
 2. Add your Dockerfile in a newly created directory usisng the above insturction.
 3. Or update the Dockerfile and related files, in this case, don't forget to update the app_versio or container_version for build parameters.
