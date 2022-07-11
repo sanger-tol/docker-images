@@ -26,4 +26,4 @@ done
 
 
 
-exec python /scripts/cmap2bed.py -i ${cmap} -z ${enzyme}
+exec python /scripts/cmap2bed.py -t ${cmap} -z ${enzyme}

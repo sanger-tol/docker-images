@@ -4,7 +4,6 @@ FROM continuumio/miniconda3
 MAINTAINER Yumi Sims yy5@sanger.ac.uk
 ################## INSTALLATION ######################
 
-RUN which conda
 RUN conda create -n cmap2bed python=3.7
 
 
