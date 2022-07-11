@@ -18,7 +18,7 @@ COPY scripts /scripts/
 
 
 RUN mkdir -p /data && chmod 664 -R /data
-RUN chmod 664 /scripts/wrapper.sh
+RUN chmod 755 /scripts/wrapper.sh
 
 
 ENTRYPOINT ["/scripts/wrapper.sh"]
