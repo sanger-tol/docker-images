@@ -1,5 +1,4 @@
-# $Id: fa2cmap_multi_color.pl 7821 2018-08-09 17:30:15Z twang $
-#!/usr/bin/env perl 
+#!/usr/local/bin/perl 
 #################################################################################
 # File: fa2cmap_multi_color.pl                                                  #
 # Date: 10/06/2016                                                              #
